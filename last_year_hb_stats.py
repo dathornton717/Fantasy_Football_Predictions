@@ -11,7 +11,7 @@ qb_urls = ['http://www.espn.com/nfl/statistics/player/_/stat/passing/sort/passin
 qbs = []
 
 # the headers of the urls
-qb_stats = ['name', 'team', 'comp', 'att', 'pct', 'pass_yds', 'pass yds/a', 'pass_long', 'pass_td', 'int', 'sack', 'rate', 'pass_yds/g']
+qb_stats = ['name', 'team', 'comp', 'att', 'pct', 'pass yds', 'pass yds/a', 'long', 'pass td', 'int', 'sack', 'rate', 'pass yds/g']
 qb_index = 0
 
 for qb_url in qb_urls:

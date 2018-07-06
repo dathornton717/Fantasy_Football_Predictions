@@ -1,4 +1,4 @@
-name,team,comp,att,pct,yds,yds/a,long,td,int,sack,rate,yds/g
+name,team,comp,att,pct,pass_yds,pass yds/a,pass_long,pass_td,int,sack,rate,pass_yds/g
 Tom Brady,NE,385,581,66.3,"4,577",7.88,64,32,8,35,102.8,286
 Philip Rivers,LAC,360,575,62.6,"4,515",7.85,75,28,10,18,96.0,282
 Matthew Stafford,DET,371,565,65.7,"4,446",7.87,71,29,10,47,99.3,278
