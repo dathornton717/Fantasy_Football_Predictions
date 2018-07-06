@@ -22,17 +22,22 @@ for qb_url in qb_urls:
         qbs.append({})
         qb_cols = qb_row.find_all('td')
 
+        increment = True
         for index, qb_col in enumerate(qb_cols):
             if index == 0:
                 continue
 
             qb_text = qb_col.text
 
-            if ', ' in qb_text:
-                comma_idx = qb_text.find(', ')
-                qb_text = qb_text[:comma_idx]
+            if 'QB' not in qb_text and index == 1:
+                qbs = qbs[:-1]
+                increment = False
+                break
+            elif 'QB' in qb_text:
+                qb_text = qb_text[:-4]
             qbs[qb_index][qb_stats[index - 1]] = qb_text.strip()
-        qb_index += 1
+        if increment:
+            qb_index += 1
 
 for qb in qbs:
     for stat in qb:
