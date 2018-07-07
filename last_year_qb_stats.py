@@ -36,7 +36,6 @@ for qb_url in qb_urls:
         qb_name = ''
 
         for index, qb_col in enumerate(qb_cols):
-            print str(index) + ' ' + qb_col.text
             if index == 0 or index == 2 or index == 13:
                 continue
 
