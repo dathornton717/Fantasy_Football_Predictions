@@ -5,125 +5,73 @@ import os
 import time
 
 # urls to scrape from
-qb_pass_urls = ['http://www.espn.com/nfl/statistics/player/_/stat/passing/sort/passingYards/qualified/false',
-    'http://www.espn.com/nfl/statistics/player/_/stat/passing/sort/passingYards/qualified/false/count/41',
-    'http://www.espn.com/nfl/statistics/player/_/stat/passing/sort/passingYards/qualified/false/count/81']
-
-qb_rush_urls = ['http://www.espn.com/nfl/statistics/player/_/stat/rushing/qualified/false',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/41',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/81',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/121',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/161',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/201',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/241',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/281',
-    'http://www.espn.com/nfl/statistics/player/_/stat/rushing/sort/rushingYards/qualified/false/count/321']
+qb_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=1&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
+    'http://fantasy.nfl.com/research/scoringleaders?offset=26&position=1&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
+    'http://fantasy.nfl.com/research/scoringleaders?offset=51&position=1&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
+    'http://fantasy.nfl.com/research/scoringleaders?offset=76&position=1&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
+    'http://fantasy.nfl.com/research/scoringleaders?offset=101&position=1&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1']
 
 qbs = {}
 
 # the headers of the urls
-qb_stats = ['name', 'team', 'comp', 'pass_att', 'pct', 'pass_yds', 'pass_yds/a',
-    'pass_long', 'pass_td', 'int', 'sack', 'rate', 'pass_yds/g', 'rush_att',
-    'rush_yds', 'rush_yds/a', 'rush_long', 'rush_20+', 'rush_td', 'rush_yds/g',
-    'fum', '1dn']
-qb_pass_index = 0
+qb_stats = ['name', 'team', 'pass_yds', 'pass_td', 'int', 'rush_yds', 'rush_td',
+    'rec_yds', 'rec_td', 'fum_td', 'two_pt', 'fum_lost']
 
-for qb_pass_url in qb_pass_urls:
-    # open url
-    qb_pass_page = requests.get(qb_pass_url)
-    qb_pass_html = qb_pass_page.text
+for qb_url in qb_urls:
+    # open the url
+    qb_page = requests.get(qb_url)
+    qb_html = qb_page.text
 
-    qb_pass_soup = BeautifulSoup(qb_pass_html, 'html.parser')
+    qb_soup = BeautifulSoup(qb_html, 'html.parser')
 
     # get the player table
-    qb_table = qb_pass_soup.find('table', attrs={'class':'tablehead'})
+    qb_table = qb_soup.find('table', attrs={'class':'tableType-player'})
 
     # get the player rows from the table
-    qb_pass_rows = qb_table.find_all('tr', attrs={'class':['oddrow', 'evenrow']})
+    qb_rows = qb_table.find_all('tr', attrs={'class':['odd', 'even']})
 
-    for qb_pass_row in qb_pass_rows:
-        qb_pass_cols = qb_pass_row.find_all('td')
-
-        qb_name = ''
-
-        for index, qb_pass_col in enumerate(qb_pass_cols):
-            # ignore the rank
-            if index == 0:
-                continue
-
-            qb_pass_text = qb_pass_col.text
-
-            # ignore if the player is not a quarterback
-            if 'QB' not in qb_pass_text and index == 1:
-                break
-            elif 'QB' in qb_pass_text:
-                qb_pass_text = qb_pass_text[:-4]
-                qb_name = qb_pass_text
-
-            if index == 1:
-                qbs[qb_pass_text] = {}
-
-            # add to the quarterback array
-            qbs[qb_name][qb_stats[index - 1]] = qb_pass_text.replace(',', '').strip()
-    # sleep for 5 seconds
-    print 'Done page of parsing. Sleeping for 5 seconds...'
-    time.sleep(5)
-
-for qb_rush_url in qb_rush_urls:
-    qb_rush_page = requests.get(qb_rush_url)
-    qb_rush_html = qb_rush_page.text
-
-    qb_rush_soup = BeautifulSoup(qb_rush_html, 'html.parser')
-    qb_rush_table = qb_rush_soup.find('table', attrs={'class':'tablehead'})
-
-    qb_rush_rows = qb_rush_table.find_all('tr', attrs={'class':['oddrow', 'evenrow']})
-
-    for qb_rush_row in qb_rush_rows:
-        qb_rush_cols = qb_rush_row.find_all('td')
+    for qb_row in qb_rows:
+        qb_cols = qb_row.find_all('td')
 
         qb_name = ''
 
-        for index, qb_rush_col in enumerate(qb_rush_cols):
-            print str(index) + ' ' + qb_rush_col.text
-            if index == 0:
+        for index, qb_col in enumerate(qb_cols):
+            print str(index) + ' ' + qb_col.text
+            if index == 0 or index == 2 or index == 13:
                 continue
 
-            qb_rush_text = qb_rush_col.text
+            qb_text = qb_col.text
 
-            if 'QB' not in qb_rush_text and index == 1:
-                break
-            elif 'QB' in qb_rush_text:
-                qb_rush_text = qb_rush_text[:-4]
-                qb_name = qb_rush_text
+            if 'QB' in qb_text:
+                qb_idx = qb_text.index('QB')
 
-            if qb_name != '' and qb_name not in qbs:
+                view_video_idx = len(qb_text)
+                if 'View Videos' in qb_text:
+                    view_video_idx = qb_text.index('View Videos')
+
+                qb_name = qb_text[:qb_idx - 1]
+
+                qb_team = 'NFL'
+                if '-' in qb_text:
+                    qb_team = qb_text[qb_idx + 5:view_video_idx - 1]
                 qbs[qb_name] = {}
-                qbs[qb_name][qb_stats[0]] = qb_name
-            if index == 1:
-                continue
+                qbs[qb_name]['name'] = qb_name
+                qbs[qb_name]['team'] = qb_team
+                continue;
 
-            if index == 2 and qb_stats[index - 1] not in qbs[qb_name]:
-                qbs[qb_name][qb_stats[1]] = qb_rush_text.strip()
+            if qb_text == '-':
+                qb_text = '0'
 
-            if index == 2:
-                continue
+            qbs[qb_name][qb_stats[index - 1]] = qb_text.strip()
 
-            print qb_name + ' ' + ' ' + str(index) + ' ' + qb_stats[index + 10]
-            qbs[qb_name][qb_stats[index + 10]] = qb_rush_text.replace(',', '').strip()
-
-    # sleep for 5 seconds
     print 'Done page of parsing. Sleeping for 5 seconds...'
     time.sleep(5)
 
-for qb in qbs:
-    for qb_stat in qb_stats:
-        if qb_stat not in qbs[qb]:
-            qbs[qb][qb_stat] = 0
 
-# if you want to print the quarterbacks
-#for qb in qbs:
-    #for stat in qb:
-        #print str(stat) + ' ' + qb[stat]
+# # if you want to print the quarterbacks
+# #for qb in qbs:
+#     #for stat in qb:
+#         #print str(stat) + ' ' + qb[stat]
 
 # write the quarterbacks out to a csv file
 with open('qb_stats_2017_2018.csv', 'wb') as file:
