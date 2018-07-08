@@ -1,4 +1,4 @@
-name,team,pass_yds,pass_td,int,rush_yds,rush_td,rec_yds,rec_td,fum_td,two_pt,fum_lost
+NAME,TEAM,PASS_YARDS,PASS_TD,INTERCEPTIONS,RUSH_YARDS,RUSH_TD,REC_YARDS,REC_TD,FUM_TD,TWO_PT,FUM_LOST
 Taquan Mizzell,CHI,0,0,0,0,0,0,0,0,0,0
 Taiwan Jones,BUF,0,0,0,0,0,11,0,0,0,0
 Frank Gore,MIA,0,0,0,961,3,245,1,0,0,0
@@ -33,7 +33,7 @@ Malcolm Brown,LA,0,0,0,246,1,53,0,0,0,0
 Joe Kerridge,GB,0,0,0,0,0,3,0,0,0,0
 Darren Sproles,PHI,0,0,0,61,0,73,0,0,0,1
 Alfred Morris,NFL,0,0,0,547,1,45,0,0,0,0
-Le'Veon Bell,PIT,0,0,0,1291,9,655,2,0,0,2
+Le'Veon Bell,PIT View News,0,0,0,1291,9,655,2,0,0,2
 Gus Edwards,BAL,0,0,0,0,0,0,0,0,0,0
 Christine Michael,IND,0,0,0,0,0,0,0,0,0,0
 Roc Thomas,MIN,0,0,0,0,0,0,0,0,0,0

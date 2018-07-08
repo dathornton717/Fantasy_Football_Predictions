@@ -58,8 +58,8 @@ for te_url in te_urls:
                 if '-' in te_text:
                     te_team = te_text[te_idx + 5:view_video_idx - 1]
                 tes[te_name] = {}
-                tes[te_name]['name'] = te_name
-                tes[te_name]['team'] = te_team
+                tes[te_name]['NAME'] = te_name
+                tes[te_name]['TEAM'] = te_team
                 continue;
 
             if te_text == '-':

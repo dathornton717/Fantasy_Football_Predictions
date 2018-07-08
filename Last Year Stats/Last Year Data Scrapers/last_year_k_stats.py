@@ -51,8 +51,8 @@ for k_url in k_urls:
                 if '-' in k_text:
                     k_team = k_text[k_idx + 4:view_video_idx - 1]
                 ks[k_name] = {}
-                ks[k_name]['name'] = k_name
-                ks[k_name]['team'] = k_team
+                ks[k_name]['NAME'] = k_name
+                ks[k_name]['TEAM'] = k_team
                 continue;
 
             if k_text == '-':

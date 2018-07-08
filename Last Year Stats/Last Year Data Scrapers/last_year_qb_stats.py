@@ -55,8 +55,8 @@ for qb_url in qb_urls:
                 if '-' in qb_text:
                     qb_team = qb_text[qb_idx + 5:view_video_idx - 1]
                 qbs[qb_name] = {}
-                qbs[qb_name]['name'] = qb_name
-                qbs[qb_name]['team'] = qb_team
+                qbs[qb_name]['NAME'] = qb_name
+                qbs[qb_name]['TEAM'] = qb_team
                 continue;
 
             if qb_text == '-':

@@ -48,7 +48,7 @@ for def_url in def_urls:
                 def_name = def_text[:def_idx - 1]
 
                 defs[def_name] = {}
-                defs[def_name]['name'] = def_name
+                defs[def_name]['NAME'] = def_name
                 continue;
 
             if def_text == '-':

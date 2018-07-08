@@ -60,8 +60,8 @@ for rb_url in rb_urls:
                 if '-' in rb_text:
                     rb_team = rb_text[rb_idx + 5:view_video_idx - 1]
                 rbs[rb_name] = {}
-                rbs[rb_name]['name'] = rb_name
-                rbs[rb_name]['team'] = rb_team
+                rbs[rb_name]['NAME'] = rb_name
+                rbs[rb_name]['TEAM'] = rb_team
                 continue;
 
             if rb_text == '-':

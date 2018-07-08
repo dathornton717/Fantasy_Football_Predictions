@@ -1,4 +1,4 @@
-name,sack,int,fum_rec,saf,td,def_2pt_ret,ret_td,pts_allow
+NAME,SACK,INTERCEPTIONS,FUM_REC,SAFETIES,TD,TWO_PT_RETURN,RET_TD,PTS_ALLOW
 New Orleans Saints,42,20,5,0,4,0,1,314
 Pittsburgh Steelers,56,16,6,1,1,0,1,296
 New England Patriots,42,12,6,2,0,0,1,278

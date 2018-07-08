@@ -66,8 +66,8 @@ for wr_url in wr_urls:
                 if '-' in wr_text:
                     wr_team = wr_text[wr_idx + 5:view_video_idx - 1]
                 wrs[wr_name] = {}
-                wrs[wr_name]['name'] = wr_name
-                wrs[wr_name]['team'] = wr_team
+                wrs[wr_name]['NAME'] = wr_name
+                wrs[wr_name]['TEAM'] = wr_team
                 continue;
 
             if wr_text == '-':
