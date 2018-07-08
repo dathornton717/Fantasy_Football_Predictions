@@ -6,8 +6,6 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import fantasy.predictor.entity.OffenseCompositeKey;
-import fantasy.predictor.entity.Position;
-import fantasy.predictor.entity.Team;
 
 @Entity
 @Table(name = "old_offense")
@@ -16,9 +14,10 @@ public class OldOffense {
   @Id
   private String name;
   @Id
-  private Team team;
+  private String team;
   @Id
-  private Position position;
+  private String position;
+
   private int passYards;
   private int passTd;
   private int interceptions;
@@ -38,19 +37,19 @@ public class OldOffense {
     this.name = name;
   }
 
-  public Team getTeam() {
+  public String getTeam() {
     return team;
   }
 
-  public void setTeam(Team team) {
+  public void setTeam(String team) {
     this.team = team;
   }
 
-  public Position getPosition() {
+  public String getPosition() {
     return position;
   }
 
-  public void setPosition(Position position) {
+  public void setPosition(String position) {
     this.position = position;
   }
 

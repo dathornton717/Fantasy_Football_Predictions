@@ -6,7 +6,6 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import fantasy.predictor.entity.KickerCompositeKey;
-import fantasy.predictor.entity.Team;
 
 @Entity
 @Table(name = "old_kicker")
@@ -15,7 +14,7 @@ public class OldKicker {
   @Id
   private String name;
   @Id
-  private Team team;
+  private String team;
   private int pat;
   private int teens;
   private int twenties;
@@ -31,11 +30,11 @@ public class OldKicker {
     this.name = name;
   }
 
-  public Team getTeam() {
+  public String getTeam() {
     return team;
   }
 
-  public void setTeam(Team team) {
+  public void setTeam(String team) {
     this.team = team;
   }
 
