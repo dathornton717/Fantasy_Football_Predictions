@@ -5,11 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
-import fantasy.predictor.entity.KickerCompositeKey;
+import fantasy.predictor.entity.keys.OldKickerCompositeKey;
 
 @Entity
 @Table(name = "old_kicker")
-@IdClass(KickerCompositeKey.class)
+@IdClass(OldKickerCompositeKey.class)
 public class OldKicker {
   @Id
   private String name;

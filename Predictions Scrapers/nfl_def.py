@@ -5,13 +5,14 @@ import os
 import time
 
 # urls to scrape from
-def_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=8&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
-    'http://fantasy.nfl.com/research/scoringleaders?offset=26&position=8&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1']
+def_urls = ['http://fantasy.nfl.com/research/projections?position=8&statCategory=projectedStats&statSeason=2018&statType=seasonProjectedStats&statWeek=1',
+    'http://fantasy.nfl.com/research/projections?offset=26&position=8&sort=projectedPts&statCategory=projectedStats&statSeason=2018&statType=seasonProjectedStats&statWeek=1']
 
-defs = {}
+defs = []
+idx = 0
 
 # the headers of the urls
-def_stats = ['NAME', 'SACK', 'INTERCEPTIONS', 'FUM_REC', 'SAFETIES', 'TD',
+def_stats = ['NAME', 'SITE', 'SACK', 'INTERCEPTIONS', 'FUM_REC', 'SAFETIES', 'TD',
     'TWO_PT_RETURN', 'RET_TD', 'PTS_ALLOW']
 
 for def_url in def_urls:
@@ -33,7 +34,7 @@ for def_url in def_urls:
         def_name = ''
 
         for index, def_col in enumerate(def_cols):
-            if index == 0 or index == 2 or index == 11:
+            if index == 1 or index == 2 or index == 11:
                 continue
 
             def_text = def_col.text
@@ -47,14 +48,16 @@ for def_url in def_urls:
 
                 def_name = def_text[:def_idx - 1]
 
-                defs[def_name] = {}
-                defs[def_name]['NAME'] = def_name
+                defs.append({})
+                defs[idx]['NAME'] = def_name
+                defs[idx]['SITE'] = 'NFL.com'
                 continue;
 
             if def_text == '-':
                 def_text = '0'
 
-            defs[def_name][def_stats[index - 2]] = def_text.strip()
+            defs[idx][def_stats[index - 1]] = def_text.strip()
+        idx += 1
 
     print 'Done page of parsing. Sleeping for 5 seconds...'
     time.sleep(5)
@@ -66,9 +69,9 @@ for def_url in def_urls:
 #         #print str(stat) + ' ' + def1[stat]
 
 # write the quarterbacks out to a csv file
-with open('def_stats_2017_2018.csv', 'wb') as file:
+with open('../Server/src/main/resources/nfl_def_stats_2018_2019.csv', 'wb') as file:
     writer = csv.DictWriter(file, fieldnames = def_stats, lineterminator=os.linesep)
 
     writer.writeheader()
     for def1 in defs:
-        writer.writerow(defs[def1])
+        writer.writerow(def1)

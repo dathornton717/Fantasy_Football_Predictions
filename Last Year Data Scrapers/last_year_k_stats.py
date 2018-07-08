@@ -8,11 +8,12 @@ import time
 k_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=7&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1',
     'http://fantasy.nfl.com/research/scoringleaders?offset=26&position=7&sort=pts&statCategory=stats&statSeason=2017&statType=seasonStats&statWeek=1']
 
-ks = {}
+ks = []
 
 # the headers of the urls
 k_stats = ['NAME', 'TEAM', 'PAT', 'TEENS', 'TWENTIES', 'THIRTIES', 'FORTIES',
     'FIFTIES']
+idx = 0
 
 for k_url in k_urls:
     # open the url
@@ -50,15 +51,16 @@ for k_url in k_urls:
                 k_team = 'NFL'
                 if '-' in k_text:
                     k_team = k_text[k_idx + 4:view_video_idx - 1]
-                ks[k_name] = {}
-                ks[k_name]['NAME'] = k_name
-                ks[k_name]['TEAM'] = k_team
+                ks.append({})
+                ks[idx]['NAME'] = k_name
+                ks[idx]['TEAM'] = k_team
                 continue;
 
             if k_text == '-':
                 k_text = '0'
 
-            ks[k_name][k_stats[index - 1]] = k_text.strip()
+            ks[idx][k_stats[index - 1]] = k_text.strip()
+        idx += 1
 
     print 'Done page of parsing. Sleeping for 5 seconds...'
     time.sleep(5)
@@ -70,9 +72,9 @@ for k_url in k_urls:
 #         #print str(stat) + ' ' + k[stat]
 
 # write the quarterbacks out to a csv file
-with open('k_stats_2017_2018.csv', 'wb') as file:
+with open('../Server/src/main/resources/k_stats_2017_2018.csv', 'wb') as file:
     writer = csv.DictWriter(file, fieldnames = k_stats, lineterminator=os.linesep)
 
     writer.writeheader()
     for k in ks:
-        writer.writerow(ks[k])
+        writer.writerow(k)
