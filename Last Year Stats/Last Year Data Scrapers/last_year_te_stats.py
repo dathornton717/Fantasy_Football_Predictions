@@ -17,8 +17,9 @@ te_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=4&statCatego
 tes = {}
 
 # the headers of the urls
-te_stats = ['name', 'team', 'pass_yds', 'pass_td', 'int', 'rush_yds', 'rush_td',
-    'rec_yds', 'rec_td', 'fum_td', 'two_pt', 'fum_lost']
+te_stats = ['NAME', 'TEAM', 'PASS_YARDS', 'PASS_TD', 'INTERCEPTIONS',
+    'RUSH_YARDS', 'RUSH_TD', 'REC_YARDS', 'REC_TD', 'FUM_TD', 'TWO_PT',
+    'FUM_LOST']
 
 for te_url in te_urls:
     # open the url

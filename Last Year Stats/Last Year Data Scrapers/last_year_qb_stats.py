@@ -14,8 +14,9 @@ qb_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=1&statCatego
 qbs = {}
 
 # the headers of the urls
-qb_stats = ['name', 'team', 'pass_yds', 'pass_td', 'int', 'rush_yds', 'rush_td',
-    'rec_yds', 'rec_td', 'fum_td', 'two_pt', 'fum_lost']
+qb_stats = ['NAME', 'TEAM', 'PASS_YARDS', 'PASS_TD', 'INTERCEPTIONS',
+    'RUSH_YARDS', 'RUSH_TD', 'REC_YARDS', 'REC_TD', 'FUM_TD', 'TWO_PT',
+    'FUM_LOST']
 
 for qb_url in qb_urls:
     # open the url

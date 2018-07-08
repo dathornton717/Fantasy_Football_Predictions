@@ -25,8 +25,9 @@ wr_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=3&statCatego
 wrs = {}
 
 # the headers of the urls
-wr_stats = ['name', 'team', 'pass_yds', 'pass_td', 'int', 'rush_yds', 'rush_td',
-    'rec_yds', 'rec_td', 'fum_td', 'two_pt', 'fum_lost']
+wr_stats = ['NAME', 'TEAM', 'PASS_YARDS', 'PASS_TD', 'INTERCEPTIONS',
+    'RUSH_YARDS', 'RUSH_TD', 'REC_YARDS', 'REC_TD', 'FUM_TD', 'TWO_PT',
+    'FUM_LOST']
 
 for wr_url in wr_urls:
     # open the url

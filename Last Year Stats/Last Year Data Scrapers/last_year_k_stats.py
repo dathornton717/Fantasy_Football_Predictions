@@ -11,8 +11,8 @@ k_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=7&statCategor
 ks = {}
 
 # the headers of the urls
-k_stats = ['name', 'team', 'pat', 'zero-nineteen', 'twenties',
-    'thirties', 'fourties', 'fifties']
+k_stats = ['NAME', 'TEAM', 'PAT', 'TEENS', 'TWENTIES', 'THIRTIES', 'FORTIES',
+    'FIFTIES']
 
 for k_url in k_urls:
     # open the url

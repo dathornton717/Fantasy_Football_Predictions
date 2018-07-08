@@ -11,8 +11,8 @@ def_urls = ['http://fantasy.nfl.com/research/scoringleaders?position=8&statCateg
 defs = {}
 
 # the headers of the urls
-def_stats = ['name', 'sack', 'int', 'fum_rec', 'saf', 'td', 'def_2pt_ret',
-    'ret_td', 'pts_allow']
+def_stats = ['NAME', 'SACK', 'INTERCEPTIONS', 'FUM_REC', 'SAFETIES', 'TD',
+    'TWO_PT_RETURN', 'RET_TD', 'PTS_ALLOW']
 
 for def_url in def_urls:
     # open the url
