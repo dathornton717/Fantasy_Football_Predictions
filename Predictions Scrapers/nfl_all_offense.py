@@ -137,7 +137,7 @@ for player_url in player_urls:
 #         #print str(stat) + ' ' + player[stat]
 
 # write the quarterbacks out to a csv file
-with open('../Server/src/main/resources/nfl_player_stats_2018_2019.csv', 'wb') as file:
+with open('../Server/src/main/resources/csv/nfl_player_stats_2018_2019.csv', 'wb') as file:
     writer = csv.DictWriter(file, fieldnames = player_stats, lineterminator=os.linesep)
 
     writer.writeheader()

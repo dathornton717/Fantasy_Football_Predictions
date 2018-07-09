@@ -69,7 +69,7 @@ for def_url in def_urls:
 #         #print str(stat) + ' ' + def1[stat]
 
 # write the quarterbacks out to a csv file
-with open('../Server/src/main/resources/nfl_def_stats_2018_2019.csv', 'wb') as file:
+with open('../Server/src/main/resources/csv/nfl_def_stats_2018_2019.csv', 'wb') as file:
     writer = csv.DictWriter(file, fieldnames = def_stats, lineterminator=os.linesep)
 
     writer.writeheader()

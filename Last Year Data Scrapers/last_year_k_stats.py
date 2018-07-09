@@ -72,7 +72,7 @@ for k_url in k_urls:
 #         #print str(stat) + ' ' + k[stat]
 
 # write the quarterbacks out to a csv file
-with open('../Server/src/main/resources/k_stats_2017_2018.csv', 'wb') as file:
+with open('../Server/src/main/resources/csv/k_stats_2017_2018.csv', 'wb') as file:
     writer = csv.DictWriter(file, fieldnames = k_stats, lineterminator=os.linesep)
 
     writer.writeheader()
