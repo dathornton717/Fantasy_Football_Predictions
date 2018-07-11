@@ -16,6 +16,7 @@ import fantasy.predictor.entity.predictions.KickerPrediction;
 import fantasy.predictor.entity.predictions.OffensePrediction;
 import fantasy.predictor.service.PredictionService;
 
+// Class to control prediction stats for the upcoming season
 @RestController
 public class PredictionController {
   private final PredictionService predictionService;
@@ -25,11 +26,20 @@ public class PredictionController {
     this.predictionService = predictionService;
   }
 
+  /**
+   * Get all offense predictions for all sites and offensive positions.
+   * @return A list of offense predictions
+   */
   @RequestMapping(value="/api/prediction/offense", method = RequestMethod.GET)
   public List<OffensePrediction> getOffensePrediction() {
     return predictionService.getOffensePrediction();
   }
 
+  /**
+   * Get offense predictions for all sites for the given position.
+   * @param position The position to get predictions for
+   * @return A list of offense predictions of the given position
+   */
   @RequestMapping(value = "/api/prediction/offense/{position}", method = RequestMethod.GET)
   public List<OffensePrediction> getOffensePredictionByPosition(@PathVariable String position) {
     if (Position.parse(position) == null) {
@@ -39,6 +49,11 @@ public class PredictionController {
     return predictionService.getOffensePredictionByPosition(Position.parse(position));
   }
 
+  /**
+   * Get offense predictions for all positions for the given site.
+   * @param site The site to get predictions for
+   * @return A list of offense predictions of the given site
+   */
   @RequestMapping(value = "/api/prediction/offense/{site}", method = RequestMethod.GET)
   public List<OffensePrediction> getOffensePredictionBySite(@PathVariable String site) {
     if (Site.parse(site) == null) {
@@ -48,6 +63,12 @@ public class PredictionController {
     return predictionService.getOffensePredictionBySite(Site.parse(site));
   }
 
+  /**
+   * Get offense predictions for the given position and site.
+   * @param position The position to get predictions for
+   * @param site The site to get predictions for
+   * @return A list of offense predictions of the given position and site
+   */
   @RequestMapping(value = "/api/prediction/offense/{position}/{site}", method = RequestMethod.GET)
   public List<OffensePrediction> getOffensePredictionByPositionAndSite(
           @PathVariable String position,
@@ -64,11 +85,20 @@ public class PredictionController {
             .getOffensePredictionByPositionAndSite(Position.parse(position), Site.parse(site));
   }
 
+  /**
+   * Get predictions for all sites for all kickers.
+   * @return A list of kicker predictions for all sites
+   */
   @RequestMapping(value = "/api/prediction/kicker", method = RequestMethod.GET)
   public List<KickerPrediction> getKickerPrediction() {
     return predictionService.getKickerPrediction();
   }
 
+  /**
+   * Get predictions for kickers for the given site.
+   * @param site The site to get predictions from
+   * @return A list of kicker predictions for the given site
+   */
   @RequestMapping(value = "/api/prediction/kicker/{site}", method = RequestMethod.GET)
   public List<KickerPrediction> getKickerPredictionBySite(@PathVariable String site) {
     if (Site.parse(site) == null) {
@@ -78,11 +108,20 @@ public class PredictionController {
     return predictionService.getKickerPredictionBySite(Site.parse(site));
   }
 
+  /**
+   * Get predictions for defenses for all sites.
+   * @return A list of defense predictions for all sites
+   */
   @RequestMapping(value = "/api/prediction/defense", method = RequestMethod.GET)
   public List<DefensePrediction> getDefensePrediction() {
     return predictionService.getDefensePrediction();
   }
 
+  /**
+   * Get predictions for defenses for the given site.
+   * @param site The site to get predictions from
+   * @return A list of defense predictions for the given site
+   */
   @RequestMapping(value = "/api/prediction/defense/{site}", method = RequestMethod.GET)
   public List<DefensePrediction> getDefensePredictionBySite(@PathVariable String site) {
     if (Site.parse(site) == null) {
@@ -91,6 +130,4 @@ public class PredictionController {
 
     return predictionService.getDefensePredictionBySite(Site.parse(site));
   }
-
-
 }
