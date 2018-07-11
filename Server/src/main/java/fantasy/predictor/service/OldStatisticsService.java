@@ -9,6 +9,7 @@ import fantasy.predictor.entity.old.OldOffense;
 
 public interface OldStatisticsService {
   List<OldOffense> getOldOffenseByPosition(Position position);
+
   List<OldOffense> getOldOffense();
 
   List<OldKicker> getOldKickers();
