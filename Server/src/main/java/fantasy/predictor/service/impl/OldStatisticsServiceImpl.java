@@ -3,6 +3,7 @@ package fantasy.predictor.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 import fantasy.predictor.entity.enums.Position;
@@ -36,7 +37,9 @@ public class OldStatisticsServiceImpl implements OldStatisticsService {
 
   @Override
   public List<OldOffense> getOldOffense() {
-    return oldOffenseRepository.findAll();
+    List<OldOffense> result = oldOffenseRepository.findAll();
+    Collections.sort(result, Collections.reverseOrder());
+    return result;
   }
 
   @Override

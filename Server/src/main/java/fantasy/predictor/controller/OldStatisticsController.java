@@ -1,6 +1,7 @@
 package fantasy.predictor.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,7 @@ public class OldStatisticsController {
    * @return The list of players and their stats
    */
   @RequestMapping(value = "/api/oldStats/{position}", method = RequestMethod.GET)
+  @CrossOrigin(origins = "http://localhost:3000")
   public List<OldOffense> getOldOffenseByPosition(@PathVariable String position) {
     if (Position.parse(position) == null) {
       return new ArrayList<OldOffense>();
@@ -44,6 +46,7 @@ public class OldStatisticsController {
    * @return A list of all offensive players containing their stats
    */
   @RequestMapping(value = "/api/oldStats/allOffense", method = RequestMethod.GET)
+  @CrossOrigin(origins = "http://localhost:3000")
   public List<OldOffense> getOldOffense() {
     return oldStatisticsService.getOldOffense();
   }
@@ -53,6 +56,7 @@ public class OldStatisticsController {
    * @return A list of kickers from last year and their stats
    */
   @RequestMapping(value = "/api/oldStats/kicker", method = RequestMethod.GET)
+  @CrossOrigin(origins = "http://localhost:3000")
   public List<OldKicker> getOldKickers() {
     return oldStatisticsService.getOldKickers();
   }
@@ -62,6 +66,7 @@ public class OldStatisticsController {
    * @return A list of defenses from last year and their stats
    */
   @RequestMapping(value = "/api/oldStats/defense", method = RequestMethod.GET)
+  @CrossOrigin(origins = "http://localhost:3000")
   public List<OldDefense> getOldDefense() {
     return oldStatisticsService.getOldDefense();
   }

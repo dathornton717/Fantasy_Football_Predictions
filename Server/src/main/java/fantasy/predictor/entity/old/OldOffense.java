@@ -6,11 +6,12 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import fantasy.predictor.entity.keys.OldOffenseCompositeKey;
+import fantasy.predictor.scoring.OffenseScorer;
 
 @Entity
 @Table(name = "old_offense")
 @IdClass(OldOffenseCompositeKey.class)
-public class OldOffense {
+public class OldOffense implements Comparable<OldOffense> {
   @Id
   private String name;
   @Id
@@ -131,5 +132,21 @@ public class OldOffense {
 
   public void setFumLost(int fumLost) {
     this.fumLost = fumLost;
+  }
+
+  @Override
+  public int compareTo(OldOffense o) {
+    double thisScore = OffenseScorer.totalPoints(this);
+    double thatScore = OffenseScorer.totalPoints(o);
+
+    if (thisScore < thatScore) {
+      return -1;
+    }
+    else if (thisScore > thatScore) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
   }
 }
